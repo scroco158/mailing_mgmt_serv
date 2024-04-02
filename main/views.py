@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from main.models import Client
 
@@ -22,4 +22,9 @@ class ClientCreateView(CreateView):
 class ClientUpdateView(UpdateView):
     model = Client
     fields = ['name', 'surname', 'email']
+    success_url = reverse_lazy('all_clients')
+
+
+class ClientDeleteView(DeleteView):
+    model = Client
     success_url = reverse_lazy('all_clients')
