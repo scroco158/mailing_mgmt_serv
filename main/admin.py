@@ -1,3 +1,23 @@
 from django.contrib import admin
+from main.models import Message, Period, Sending, Client
 
-# Register your models here.
+
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'body')
+
+
+@admin.register(Period)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'hour', 'day', 'week')
+
+
+@admin.register(Client)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'surname', 'email')
+
+
+@admin.register(Sending)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'start_time', 'end_time', 'period', 'message', 'attempt')
+
