@@ -1,0 +1,19 @@
+{% extends 'main/index.html' %}
+    {% block content%}
+        {% for object in object_list %}
+          <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <h5 class="card-title">Client {{object.pk}}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name______{{object.name}}</li>
+                <li class="list-group-item">Surname___{{object.surname}}</li>
+                <li class="list-group-item">Email_____{{object.email}}</li>
+              </ul>
+              <div class="card-body">
+                <a href="#" class="card-link">Удалить</a>
+                <a href="#" class="card-link">Редактировать</a>
+              </div>
+          </div>
+        {% endfor %}
+    {% endblock %}
