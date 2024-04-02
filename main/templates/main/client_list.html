@@ -1,7 +1,16 @@
 {% extends 'main/index.html' %}
     {% block content%}
-        <h4> Все клиенты </h4>
-        <div class="container">
+
+        <div class="col-4">
+               <h2> Все клиенты </h2>
+        </div>
+        <div class="col-4">
+                <a href="{% url 'create_client' %}" class="btn btn-primary mb-4">Добавить нового клиента</a>
+        </div>
+        <div class="col-4">
+        </div>
+
+
         {% for object in object_list %}
           <div class="card" style="width: 20rem;">
               <div class="card-body">
@@ -13,12 +22,9 @@
                 <li class="list-group-item">Email_____{{object.email}}</li>
               </ul>
               <div class="card-body">
-                <a href="#" class="card-link">Удалить</a>
-                <a href="#" class="card-link">Редактировать</a>
+                <a href="{% url 'delete_client' object.pk %}" class="btn btn-warning">Удалить</a>
+                <a href="{% url 'update_client' object.pk %}" class="btn btn-secondary">Редактировать</a>
               </div>
           </div>
         {% endfor %}
-        </div>
-
-
     {% endblock %}
