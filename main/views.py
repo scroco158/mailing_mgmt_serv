@@ -10,3 +10,5 @@ class ClientDetailView(DetailView):
 
 class ClientListView(ListView):
     model = Client
+
+

@@ -1,5 +1,7 @@
 {% extends 'main/index.html' %}
     {% block content%}
+        <h4> Все клиенты </h4>
+        <div class="container">
         {% for object in object_list %}
           <div class="card" style="width: 20rem;">
               <div class="card-body">
@@ -16,4 +18,7 @@
               </div>
           </div>
         {% endfor %}
+        </div>
+
+
     {% endblock %}
