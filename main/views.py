@@ -32,33 +32,6 @@ class ClientDeleteView(DeleteView):
     success_url = reverse_lazy('all_clients')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # контроллеры по работе с сообщениями
 
 class MessageDetailView(DetailView):
@@ -83,3 +56,30 @@ class MessageUpdateView(UpdateView):
 class MessageDeleteView(DeleteView):
     model = Message
     success_url = reverse_lazy('all_messages')
+
+
+# контроллеры по работе с сообщениями
+class SendingDetailView(DetailView):
+    model = Sending
+
+
+class SendingListView(ListView):
+    model = Sending
+
+
+class SendingCreateView(CreateView):
+    model = Sending
+    fields = ['name', 'start_time', 'end_time', 'period', 'client', 'message', 'attempt']
+    success_url = reverse_lazy('all_sendings')
+
+
+class SendingUpdateView(UpdateView):
+    model = Sending
+    fields = ['name', 'start_time', 'end_time', 'period', 'client', 'message', 'attempt']
+    success_url = reverse_lazy('all_sendings')
+
+
+class SendingDeleteView(DeleteView):
+    model = Sending
+    success_url = reverse_lazy('all_sendings')
+

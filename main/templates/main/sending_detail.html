@@ -1,0 +1,21 @@
+{% extends 'main/index.html' %}
+
+    {% block content%}
+
+          <div class="card" style="width: 50rem;">
+              <div class="card-body">
+                <h5 class="card-title">Рассылка номер {{object.pk}}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Название --> {{object.name}}</li>
+                <li class="list-group-item">Дата начала --> {{object.start_time}}</li>
+                <li class="list-group-item">Дата завершения  --> {{object.end_time}}</li>
+                <li class="list-group-item">Периодичность --> {{object.period}}</li>
+                <li class="list-group-item">Клиенты --> {{object.client}}</li>
+                <li class="list-group-item">Сообщение --> {{object.message}}</li>
+                <li class="list-group-item">Попытки отправки --> {{object.attempt}}</li>
+
+              </ul>
+          </div>
+
+    {% endblock %}
