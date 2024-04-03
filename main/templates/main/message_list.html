@@ -1,0 +1,30 @@
+{% extends 'main/index.html' %}
+    {% block content%}
+
+        <div class="col-4">
+               <h2> Все сообщения </h2>
+        </div>
+        <div class="col-4">
+                <a href="{% url 'create_client' %}" class="btn btn-primary mb-4">Добавить новое сообщение</a>
+        </div>
+        <div class="col-4">
+        </div>
+
+
+        {% for object in object_list %}
+          <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <h5 class="card-title">Сообщение {{object.pk}}</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Тема____{{object.name}}</li>
+                <li class="list-group-item">Текст___{{object.body}}</li>
+              </ul>
+              <div class="card-body">
+                <a href="{% url 'one_message' object.pk %}" class="btn btn-secondary">View</a>
+                <a href="#" class="btn btn-secondary">Edit</a>
+                <a href="#" class="btn btn-warning">Del</a>
+              </div>
+          </div>
+        {% endfor %}
+    {% endblock %}
