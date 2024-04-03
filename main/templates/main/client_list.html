@@ -22,8 +22,9 @@
                 <li class="list-group-item">Email_____{{object.email}}</li>
               </ul>
               <div class="card-body">
-                <a href="{% url 'delete_client' object.pk %}" class="btn btn-warning">Удалить</a>
-                <a href="{% url 'update_client' object.pk %}" class="btn btn-secondary">Редактировать</a>
+                  <a href="{% url 'one_client' object.pk %}" class="btn btn-secondary">VIEW</a>
+                  <a href="{% url 'update_client' object.pk %}" class="btn btn-secondary">EDIT</a>
+                  <a href="{% url 'delete_client' object.pk %}" class="btn btn-warning">DEL</a>
               </div>
           </div>
         {% endfor %}
