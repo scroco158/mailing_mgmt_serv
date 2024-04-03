@@ -1,0 +1,17 @@
+{% extends 'main/index.html' %}
+
+{% block content%}
+<div class="container-fluid">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token%}
+                        {{ form.as_p }}
+                        <button type="submit">
+                            Сохранить
+                        </button>
+                    </form>
+            </div>
+        </div>
+</div>
+{% endblock%}

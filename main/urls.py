@@ -1,7 +1,7 @@
 from django.urls import path
 from main import views
 from main.views import (ClientDetailView, ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView,
-                        MessageDetailView, MessageListView)
+                        MessageDetailView, MessageListView, MessageCreateView, MessageUpdateView, MessageDeleteView)
 
 urlpatterns = [
 
@@ -13,5 +13,8 @@ urlpatterns = [
 
     path('one_message/<int:pk>', MessageDetailView.as_view(), name='one_message'),
     path('all_messages/', MessageListView.as_view(), name='all_messages'),
+    path('create_message/', MessageCreateView.as_view(), name='create_message'),
+    path('update_message/<int:pk>', MessageUpdateView.as_view(), name='update_message'),
+    path('delete_message/<int:pk>', MessageDeleteView.as_view(), name='delete_message'),
 
 ]

@@ -67,11 +67,19 @@ class MessageDetailView(DetailView):
 class MessageListView(ListView):
     model = Message
 
+
 class MessageCreateView(CreateView):
     model = Message
+    fields = ['name', 'body']
+    success_url = reverse_lazy('all_messages')
+
 
 class MessageUpdateView(UpdateView):
     model = Message
+    fields = ['name', 'body']
+    success_url = reverse_lazy('all_messages')
+
 
 class MessageDeleteView(DeleteView):
     model = Message
+    success_url = reverse_lazy('all_messages')

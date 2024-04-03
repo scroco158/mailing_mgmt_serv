@@ -5,7 +5,7 @@
                <h2> Все сообщения </h2>
         </div>
         <div class="col-4">
-                <a href="{% url 'create_client' %}" class="btn btn-primary mb-4">Добавить новое сообщение</a>
+                <a href="{% url 'create_message' %}" class="btn btn-primary mb-4">Добавить новое сообщение</a>
         </div>
         <div class="col-4">
         </div>
@@ -22,8 +22,8 @@
               </ul>
               <div class="card-body">
                 <a href="{% url 'one_message' object.pk %}" class="btn btn-secondary">View</a>
-                <a href="#" class="btn btn-secondary">Edit</a>
-                <a href="#" class="btn btn-warning">Del</a>
+                <a href="{% url 'update_message' object.pk %}" class="btn btn-secondary">Edit</a>
+                <a href="{% url 'delete_message' object.pk %}" class="btn btn-warning">Del</a>
               </div>
           </div>
         {% endfor %}
