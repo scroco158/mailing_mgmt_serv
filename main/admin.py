@@ -4,7 +4,7 @@ from main.models import Message, Period, Sending, Client
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'body')
+    list_display = ('pk', 'name', 'body')
 
 
 @admin.register(Period)
