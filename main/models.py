@@ -3,27 +3,32 @@ from django.db import models
 
 class Message(models.Model):
     """ Сообщение для рассылки"""
-    name = models.CharField(max_length=50, verbose_name='тема сообщения')
-    body = models.TextField(verbose_name='текст сообщения')
+    name = models.CharField(max_length=50, verbose_name='тема сообщения для рассылки')
+    body = models.TextField(verbose_name='текст сообщения для рассылки')
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'сообщение'
-        verbose_name_plural = 'сообщения'
+        verbose_name = 'сообщение для рассылки'
+        verbose_name_plural = 'сообщения для рассылки'
         ordering = ('name',)
 
 
 class Period(models.Model):
     """ Периодичность рассылки """
-    name = models.CharField(max_length=50, verbose_name='периодичность')
-    hour = models.IntegerField(verbose_name='часы')
-    day = models.IntegerField(verbose_name='дни')
-    week = models.IntegerField(verbose_name='недели')
+    name = models.CharField(max_length=50, verbose_name='периодичность рассылки сообщения')
+    minutes = models.IntegerField(default=0, verbose_name='минуты')
+    hours = models.IntegerField(default=0, verbose_name='часы')
+    days = models.IntegerField(default=0, verbose_name='дни')
+    weeks = models.IntegerField(default=0, verbose_name='недели')
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'периодичность'
+        verbose_name_plural = 'периодичности'
 
 
 class MailingAttempt(models.Model):
@@ -41,15 +46,19 @@ class Client(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'клиент'
+        verbose_name_plural = 'клиенты'
+
 
 class Sending(models.Model):
     """ Настройки рассылки"""
     name = models.CharField(max_length=50, verbose_name='название рассылки')
     start_time = models.DateTimeField(verbose_name='время начала')
-    end_time = models.DateTimeField(verbose_name='время завершения')
+    end_time = models.DateTimeField(verbose_name='время завершения', null=True, blank=True)
     period = models.ForeignKey(Period, on_delete=models.CASCADE, verbose_name='периодичность рассылки')
     client = models.ManyToManyField(Client, verbose_name='клиент')
-    message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='содержание рассылки')
+    message = models.OneToOneField(Message, on_delete=models.CASCADE, verbose_name='содержание рассылки')
     attempt = models.ForeignKey(MailingAttempt, on_delete=models.CASCADE,verbose_name='попытка рассылки', null=True, blank=True)
 
     def __str__(self):
@@ -58,5 +67,3 @@ class Sending(models.Model):
     class Meta:
         verbose_name = 'рассылка'
         verbose_name_plural = 'рассылки'
-
-

@@ -9,7 +9,7 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(Period)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'hour', 'day', 'week')
+    list_display = ('name', 'minutes', 'hours', 'days', 'weeks')
 
 
 @admin.register(Client)
