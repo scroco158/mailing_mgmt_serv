@@ -8,8 +8,8 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Название --> {{object.name}}</li>
-                <li class="list-group-item">Дата начала --> {{object.start_time}}</li>
-                <li class="list-group-item">Дата завершения  --> {{object.end_time}}</li>
+                <li class="list-group-item">Дата начала --> {{object.start_time | date:'d-m-Y H:i:s' }}</li>
+                <li class="list-group-item">Дата завершения  --> {{object.end_time | date:'d-m-Y H:i:s' }}</li>
                 <li class="list-group-item">Периодичность --> {{object.period}}</li>
                 <li class="list-group-item">Клиенты --> {{object.client}}</li>
                 <li class="list-group-item">Сообщение --> {{object.message}}</li>
