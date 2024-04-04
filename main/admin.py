@@ -19,5 +19,5 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(Sending)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'start_time', 'end_time', 'period', 'message', 'attempt')
+    list_display = ('name', 'start_time', 'end_time', 'period', 'message', 'status', 'attempt')
 

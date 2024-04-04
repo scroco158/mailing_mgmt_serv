@@ -69,13 +69,13 @@ class SendingListView(ListView):
 
 class SendingCreateView(CreateView):
     model = Sending
-    fields = ['name', 'start_time', 'end_time', 'period', 'client', 'message', 'attempt']
+    fields = ['name', 'start_time', 'end_time', 'period', 'client', 'message', 'status', 'attempt']
     success_url = reverse_lazy('all_sendings')
 
 
 class SendingUpdateView(UpdateView):
     model = Sending
-    fields = ['name', 'start_time', 'end_time', 'period', 'client', 'message', 'attempt']
+    fields = ['name', 'start_time', 'end_time', 'period', 'client', 'message', 'status', 'attempt']
     success_url = reverse_lazy('all_sendings')
 
 

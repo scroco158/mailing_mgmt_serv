@@ -53,12 +53,18 @@ class Client(models.Model):
 
 class Sending(models.Model):
     """ Настройки рассылки"""
+    STATUS_CHOICES = [
+        ('en', 'Завершена'),
+        ('cr', 'Создана'),
+        ('st', 'Запущена'),
+    ]
     name = models.CharField(max_length=50, verbose_name='название рассылки')
     start_time = models.DateTimeField(verbose_name='время начала')
     end_time = models.DateTimeField(verbose_name='время завершения', null=True, blank=True)
     period = models.ForeignKey(Period, on_delete=models.CASCADE, verbose_name='периодичность рассылки')
     client = models.ManyToManyField(Client, verbose_name='клиент')
     message = models.OneToOneField(Message, on_delete=models.CASCADE, verbose_name='содержание рассылки')
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='cr')
     attempt = models.ForeignKey(MailingAttempt, on_delete=models.CASCADE,verbose_name='попытка рассылки', null=True, blank=True)
 
     def __str__(self):
