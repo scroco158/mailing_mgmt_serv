@@ -73,7 +73,7 @@ class MailingAttempt(models.Model):
     server_response = models.TextField(verbose_name='ответ сервера')
 
     def __str__(self):
-        return self.latest_att_time
+        return self.server_response
 
     class Meta:
         verbose_name = 'попытка рассылки'
