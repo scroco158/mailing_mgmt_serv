@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main.models import Message, Period, Sending, Client
+from main.models import Message, Sending, Client, MailingAttempt
 
 
 @admin.register(Message)
@@ -7,17 +7,16 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'body')
 
 
-@admin.register(Period)
-class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'minutes', 'hours', 'days', 'weeks')
-
-
 @admin.register(Client)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'surname', 'email')
+    list_display = ('pk', 'name', 'surname', 'email')
 
 
 @admin.register(Sending)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('name', 'start_time', 'end_time', 'period', 'message', 'status', 'attempt')
+    list_display = ('pk','name', 'start_time', 'end_time', 'period', 'status', 'message', 'last_ok_time')
 
+
+@admin.register(MailingAttempt)
+class MailingAttemptAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'sending', 'latest_att_time', 'status', 'server_response')
