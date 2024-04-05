@@ -2,7 +2,8 @@ from django.urls import path
 from main import views
 from main.views import (ClientDetailView, ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView,
                         MessageDetailView, MessageListView, MessageCreateView, MessageUpdateView, MessageDeleteView,
-                        SendingListView, SendingDetailView, SendingCreateView, SendingUpdateView, SendingDeleteView)
+                        SendingListView, SendingDetailView, SendingCreateView, SendingUpdateView, SendingDeleteView,
+                        run_by_button)
 
 urlpatterns = [
 
@@ -23,5 +24,7 @@ urlpatterns = [
     path('create_sending/', SendingCreateView.as_view(), name='create_sending'),
     path('update_sending/<int:pk>', SendingUpdateView.as_view(), name='update_sending'),
     path('delete_sending/<int:pk>', SendingDeleteView.as_view(), name='delete_sending'),
+
+    path('run_by_button/', run_by_button, name='run_by_button')
 
 ]

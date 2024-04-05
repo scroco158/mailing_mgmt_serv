@@ -1,12 +1,12 @@
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from main.models import Client, Message, Sending
+from main.services import send_mailing
 
 
 # контроллеры по работе с клиентом
-
 class ClientDetailView(DetailView):
     model = Client
 
@@ -33,9 +33,9 @@ class ClientDeleteView(DeleteView):
 
 
 # контроллеры по работе с сообщениями
-
 class MessageDetailView(DetailView):
     model = Message
+
 
 class MessageListView(ListView):
     model = Message
@@ -58,7 +58,7 @@ class MessageDeleteView(DeleteView):
     success_url = reverse_lazy('all_messages')
 
 
-# контроллеры по работе с сообщениями
+# контроллеры по работе с рассылками
 class SendingDetailView(DetailView):
     model = Sending
 
@@ -82,4 +82,11 @@ class SendingUpdateView(UpdateView):
 class SendingDeleteView(DeleteView):
     model = Sending
     success_url = reverse_lazy('all_sendings')
+
+
+# контроллер для запуска бизнес логики
+def run_by_button(request):
+    send_mailing()
+    return redirect(reverse('all_clients'))
+
 
