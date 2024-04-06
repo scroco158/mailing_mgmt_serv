@@ -6,9 +6,6 @@ from django.core.mail import send_mail
 from config import settings
 from main.models import Sending
 
-# import os
-# from dotenv
-
 MY_TIME_FORMAT = '%m/%d/%Y %H:%M:%S'
 
 
