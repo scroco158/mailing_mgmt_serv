@@ -183,7 +183,6 @@
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_clients' %}">Клиенты</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_messages' %}">Сообщения</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_sendings' %}">Рассылки</a>
-        <a class="btn btn-success" href="{% url 'run_by_button' %}">Запустить рассылки</a>
       </nav>
     </div>
 
@@ -203,14 +202,11 @@
         <small class="d-block mb-3 text-body-secondary">&copy; 2017–2024</small>
       </div>
       <div class="col-6 col-md">
-        <h5>Features</h5>
+        <h3><mark>Управление рассылками<mark></h3>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'run_by_button' %}">Запустить разово</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'turn_on_schedule' %}">Включить рассылку по расписанию</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Выключить рассылку по расписанию</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
@@ -222,15 +218,7 @@
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
         </ul>
       </div>
-      <div class="col-6 col-md">
-        <h5>About</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
-        </ul>
-      </div>
+
     </div>
   </footer>
 </div>

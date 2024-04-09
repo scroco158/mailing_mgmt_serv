@@ -22,3 +22,4 @@ typing_extensions==4.10.0
 wcwidth==0.2.13
 
 pytz~=2024.1
+python-dotenv~=1.0.1

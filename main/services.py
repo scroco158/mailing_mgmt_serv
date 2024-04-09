@@ -1,8 +1,9 @@
+import smtplib
 import pytz
 from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from config import settings
-from main.models import Sending
+from main.models import Sending, MailingAttempt
 
 MY_TIME_FORMAT = '%m/%d/%Y %H:%M:%S'
 
@@ -17,6 +18,7 @@ def send_mailing():
     mail_from = settings.EMAIL_HOST_USER
 
     # создание объекта с применением фильтра
+    # выбираем все со статусом запущена
     mailings = (Sending.objects.filter(start_time__lte=current_datetime)
                                .filter(status__in=['st',]))
 
@@ -27,7 +29,8 @@ def send_mailing():
         print(f'Клиенты по этой рассылке {[client.email for client in mailing.client.all()]}')
         print()
 
-        time_period = timedelta(minutes=5)  # устанавливаю для тестов в кроне буду проверять каждую минуту
+        # устанавливаю для тестов в кроне буду проверять каждую минуту
+        time_period = timedelta(minutes=5)
 
         # Этот блок раскомментировать для работы по расписанию из базы
         # time_period = timedelta(weeks=4)
@@ -47,9 +50,24 @@ def send_mailing():
             print('Пора выполнить рассылку')
             mailing.last_ok_time = current_datetime
             mailing.save()
-            send_mail(
-                subject=mailing.name,
-                message=mailing.message.body,
-                from_email=mail_from,
-                recipient_list=[client.email for client in mailing.client.all()]
-            )
+            try:
+                server_resp = send_mail(
+                    subject=mailing.name,
+                    message=mailing.message.body,
+                    from_email=mail_from,
+                    recipient_list=[client.email for client in mailing.client.all()],
+                    fail_silently=False
+                )
+                MailingAttempt.objects.create(
+                    sending=mailing,
+                    latest_att_time=current_datetime,
+                    status=True,
+                    server_response=server_resp
+                )
+            except smtplib.SMTPException as e:
+                MailingAttempt.objects.create(
+                    sending=mailing,
+                    latest_att_time=current_datetime,
+                    status=False,
+                    server_response=e.__doc__
+                )

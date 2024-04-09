@@ -4,7 +4,7 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 
 from main.models import Client, Message, Sending
 from main.services import send_mailing
-
+from django.core.management import call_command
 
 # контроллеры по работе с клиентом
 class ClientDetailView(DetailView):
@@ -90,3 +90,6 @@ def run_by_button(request):
     return redirect(reverse('all_clients'))
 
 
+def turn_on_schedule(request):
+    call_command('crontab add')
+    return redirect(reverse('all_clients'))
