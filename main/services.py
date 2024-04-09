@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from config import settings
 from main.models import Sending, MailingAttempt
+from django.core.management import call_command
 
 MY_TIME_FORMAT = '%m/%d/%Y %H:%M:%S'
 

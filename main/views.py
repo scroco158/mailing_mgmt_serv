@@ -91,5 +91,6 @@ def run_by_button(request):
 
 
 def turn_on_schedule(request):
+    print('Включение автоматической рассылки')
     call_command('crontab add')
     return redirect(reverse('all_clients'))
