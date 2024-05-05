@@ -3,7 +3,7 @@ from main import views
 from main.views import (ClientDetailView, ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView,
                         MessageDetailView, MessageListView, MessageCreateView, MessageUpdateView, MessageDeleteView,
                         SendingListView, SendingDetailView, SendingCreateView, SendingUpdateView, SendingDeleteView,
-                        run_by_button, turn_on_schedule)
+                        run_by_button, turn_on_schedule, turn_off_schedule)
 
 urlpatterns = [
 
@@ -26,6 +26,7 @@ urlpatterns = [
     path('delete_sending/<int:pk>', SendingDeleteView.as_view(), name='delete_sending'),
 
     path('run_by_button/', run_by_button, name='run_by_button'),
-    path('turn_on_schedule/', turn_on_schedule, name='turn_on_schedule')
+    path('turn_on_schedule/', turn_on_schedule, name='turn_on_schedule'),
+    path('turn_off_schedule/', turn_off_schedule, name='turn_off_schedule')
 
 ]

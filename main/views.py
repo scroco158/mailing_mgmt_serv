@@ -101,3 +101,12 @@ def turn_on_schedule(request):
     """
     call_command('crontab', 'add')
     return redirect(reverse('all_clients'))
+
+
+def turn_off_schedule(request):
+    """
+    Выключает периодическую проверку условий необходимости выполнения рассылок
+    """
+    print('выключение расписания')
+    call_command('crontab', 'remove')
+    return redirect(reverse('all_clients'))
