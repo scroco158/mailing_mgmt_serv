@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'main',
+    'users',
+
     'django_crontab',
 
 ]
@@ -156,3 +158,5 @@ EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL') == 'True'
 CRONJOBS = [
     ('*/1 * * * *', 'main.services.send_mailing')
 ]
+
+AUTH_USER_MODEL = 'users.User'
