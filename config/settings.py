@@ -146,6 +146,13 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL') == 'True'
 
+
+# Задание для кронтаба
+# Что будет выполняться -> main.services.send_mailing'
+# периодичность '*/1 * * * *'  -> каждая минута
+# для запуска                  -> python manage.py crontab add
+# для просмотра активных задач -> python manage.py crontab show
+# для остановки задач          -> python manage.py crontab remove
 CRONJOBS = [
     ('*/1 * * * *', 'main.services.send_mailing')
 ]
