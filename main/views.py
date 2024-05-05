@@ -86,11 +86,18 @@ class SendingDeleteView(DeleteView):
 
 # контроллер для запуска бизнес логики
 def run_by_button(request):
+    """
+    Запускает разовую проверку условий необходимости выполнения рассылок
+    и при выполнении условий делает рассылку
+    """
     send_mailing()
     return redirect(reverse('all_clients'))
 
 
 def turn_on_schedule(request):
-    print('Включение автоматической рассылки')
-    call_command('crontab add')
+    """
+    Запускает периодическую проверку условий необходимости выполнения рассылок
+    Регулярность проверки выполнения рассылок согласно параметрам в settings.py
+    """
+    call_command('crontab', 'add')
     return redirect(reverse('all_clients'))
