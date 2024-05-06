@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 NULLABLE = {'null': True, 'blank': True}
 
 
@@ -54,6 +56,8 @@ class Sending(models.Model):
     client = models.ManyToManyField(Client, verbose_name='клиент')
     message = models.OneToOneField(Message, on_delete=models.CASCADE, verbose_name='содержание рассылки')
     last_ok_time = models.DateTimeField(verbose_name='дата последней удачной рассылки', **NULLABLE)
+
+    owner = models.ForeignKey(User, verbose_name='Владелец', on_delete=models.CASCADE, **NULLABLE)
 
     def __str__(self):
         return self.name
