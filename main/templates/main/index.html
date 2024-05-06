@@ -185,6 +185,7 @@
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_sendings' %}">Рассылки</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выход {{ user.email }}</a>
       {% else %}
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:register' %}">Регистрация</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:login' %}">Вход</a>
       {% endif %}
 
