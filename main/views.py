@@ -123,3 +123,7 @@ def turn_off_schedule(request):
     print('выключение расписания')
     call_command('crontab', 'remove')
     return redirect(reverse('all_clients'))
+
+
+def front_page(request):
+    return render(request, 'main/front_page.html')
