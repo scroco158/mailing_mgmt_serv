@@ -67,7 +67,14 @@ class SendingDetailView(LoginRequiredMixin, DetailView):
 
 
 class SendingListView(LoginRequiredMixin, ListView):
+    """ Список всех рассылок"""
     model = Sending
+
+    def get_queryset(self):
+        """ Фильтр по текущему пользователю"""
+        sen = super().get_queryset()
+        user = self.request.user
+        return sen.filter(owner=user)
 
 
 class SendingCreateView(LoginRequiredMixin, CreateView):

@@ -2,7 +2,7 @@
     {% block content%}
 
         <div class="col-4">
-               <h2> Все рассылки </h2>
+               <h2> Рассылки пользователя {{ user }} </h2>
         </div>
         <div class="col-4">
                 <a href="{% url 'create_sending' %}" class="btn btn-primary mb-4">Добавить рассылку</a>
