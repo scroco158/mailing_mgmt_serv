@@ -10,6 +10,9 @@ class Message(models.Model):
     name = models.CharField(max_length=50, verbose_name='тема сообщения для рассылки')
     body = models.TextField(verbose_name='текст сообщения для рассылки')
 
+    owner = models.ForeignKey(User, verbose_name='Владелец', on_delete=models.CASCADE, **NULLABLE)
+
+
     def __str__(self):
         return self.name
 

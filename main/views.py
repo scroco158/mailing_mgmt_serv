@@ -48,6 +48,11 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
 class MessageListView(LoginRequiredMixin, ListView):
     model = Message
 
+    def get_queryset(self):
+        mes_queryset=super().get_queryset()
+        user = self.request.user
+        return mes_queryset.filter(owner=user)
+
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
     model = Message
