@@ -1,0 +1,33 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags  %}
+
+     {% block content %}
+     <div class="container">
+          <div class="row text-center">
+              {% for object in object_list%}
+              <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                  <img src="{{object.picture|mymedia}}" class="card-img-top border border-3 " alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{object.title}}  ({{object.slug}})</h5>
+                    <p class="card-text">{{object.body|truncatechars:100}}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Опубликовано___{{object.published_at}}</li>
+                    <li class="list-group-item">Просмотров_____{{object.view_count}}</li>
+                  </ul>
+                  <div class="card-body">
+                    <a href="{% url 'blog:one_record' object.pk %}" class="card-link">View</a>
+                    <a href="{% url 'blog:update_record' object.pk %}" class="card-link">Edit</a>
+                    <a href="{% url 'blog:delete_record' object.pk %}" class="card-link">Del</a>
+                </div>
+                {% if object.is_published %}
+                    <a class="btn btn-warning" href="{% url 'blog:status_change' object.pk %}">Пометить не опубликованным</a>
+                {% else %}
+                    <a class="btn btn-success" href="{% url 'blog:status_change' object.pk %}">Пометить опубликованным</a>
+                {% endif %}
+              </div>
+          </div>
+          {% endfor %}
+     </div>
+     {% endblock %}

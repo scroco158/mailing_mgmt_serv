@@ -1,6 +1,31 @@
 {% extends 'main/index.html' %}
     {% block content%}
 
-        <H1>Для начала работы необходима авторизация</H1>
+        <H5>На данный момент на сайте {{ sending_quantity }} рассылок из них {{ active_sending_quantity }} активно</H5>
+        <H5>Клиентов рассылок {{ clients_quantity }}</H5>
+        <br />
+        <H5>
+            Блог
+        </H5>
 
+            <div class="container">
+                {% for item in blog_records %}
+
+                    <div class="card ">
+                      <div class="row g-0">
+                        <div class="col-md-4">
+                          <img src="/media/{{item.picture}}" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title">{{item.title}}</h5>
+                            <p class="card-text">{{item.body|truncatechars:100}}</p>
+                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                {% endfor %}
+            </div>
     {% endblock %}

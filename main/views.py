@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
+from blog.models import BlogRecord
 from main.models import Client, Message, Sending
 from main.services import send_mailing
 from django.core.management import call_command
@@ -156,4 +157,25 @@ def turn_off_schedule(request):
 
 
 def front_page(request):
-    return render(request, 'main/front_page.html')
+    """
+    количество рассылок всего,
+    количество активных рассылок,
+    количество уникальных клиентов для рассылок,
+    три случайные статьи из блога.
+    """
+
+    sending_quantity = len(Sending.objects.all())
+    active_sending_quantity = len(Sending.objects.filter(status='st'))
+    clients_quantity = len(Client.objects.all())
+
+    blog_records = BlogRecord.objects.all()[:3]
+
+
+    context = {
+        'sending_quantity': sending_quantity,
+        'active_sending_quantity': active_sending_quantity,
+        'clients_quantity': clients_quantity,
+        'blog_records': blog_records,
+    }
+
+    return render(request, 'main/front_page.html', context)
