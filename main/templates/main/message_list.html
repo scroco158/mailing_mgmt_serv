@@ -2,7 +2,7 @@
     {% block content%}
 
         <div class="col-4">
-               <h2> Все сообщения </h2>
+               <h2> Сообщения пользователя {{ user }} </h2>
         </div>
         <div class="col-4">
                 <a href="{% url 'create_message' %}" class="btn btn-primary mb-4">Добавить новое сообщение</a>
