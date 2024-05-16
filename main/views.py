@@ -59,6 +59,13 @@ class MessageCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'body']
     success_url = reverse_lazy('all_messages')
 
+    def form_valid(self, form):
+        mes_form = form.save()
+        user = self.request.user
+        mes_form.owner = user
+        mes_form.save()
+        return super().form_valid(form)
+
 
 class MessageUpdateView(LoginRequiredMixin, UpdateView):
     model = Message

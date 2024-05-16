@@ -12,7 +12,6 @@ class Message(models.Model):
 
     owner = models.ForeignKey(User, verbose_name='Владелец', on_delete=models.CASCADE, **NULLABLE)
 
-
     def __str__(self):
         return self.name
 
