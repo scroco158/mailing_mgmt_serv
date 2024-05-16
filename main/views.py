@@ -28,6 +28,12 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'surname', 'email']
     success_url = reverse_lazy('all_clients')
 
+    def form_valid(self, form):
+        cl_form = form.save()
+        cl_form.owner = self.request.user
+        cl_form.save()
+        return super().form_valid(form)
+
 
 class ClientUpdateView(LoginRequiredMixin, UpdateView):
     model = Client
