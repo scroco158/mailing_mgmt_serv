@@ -1,13 +1,17 @@
 {% extends 'main/index.html' %}
     {% block content%}
+        <p>
+          <H4 style="background-color:YellowGreen;">О сайте:</H4>
+        </p>
 
-        <H5>На данный момент на сайте {{ sending_quantity }} рассылок из них {{ active_sending_quantity }} активно</H5>
-        <H5>Клиентов рассылок {{ clients_quantity }}</H5>
-        <br />
-        <H5>
-            Блог
-        </H5>
+        <p>
+          <H5>На данный момент на сайте {{ sending_quantity }} рассылок из них {{ active_sending_quantity }} активно</H5>
+          <H5>Клиентов рассылок {{ clients_quantity }}</H5>
+        </p>
 
+        <p>
+        <H4 style="background-color:YellowGreen;">О блоге:</H4>
+        </p>
             <div class="container">
                 {% for item in blog_records %}
 
