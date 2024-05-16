@@ -25,6 +25,9 @@ class Client(models.Model):
     surname = models.CharField(max_length=50, verbose_name='фамилия', **NULLABLE)
     email = models.EmailField(default='scroco@mail.ru', verbose_name='почта')
 
+    owner = models.ForeignKey(User, verbose_name='Владелец', on_delete=models.CASCADE, **NULLABLE)
+
+
     def __str__(self):
         return self.name
 

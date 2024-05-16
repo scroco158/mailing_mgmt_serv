@@ -17,6 +17,11 @@ class ClientDetailView(LoginRequiredMixin, DetailView):
 class ClientListView(LoginRequiredMixin, ListView):
     model = Client
 
+    def get_queryset(self):
+        cl_queryset = super().get_queryset()
+        user = self.request.user
+        return cl_queryset.filter(owner=user)
+
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
     model = Client

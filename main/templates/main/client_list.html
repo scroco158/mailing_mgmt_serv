@@ -2,7 +2,7 @@
     {% block content%}
 
         <div class="col-4">
-               <h2> Все клиенты </h2>
+               <h2> Клиенты пользователя {{ user }} </h2>
         </div>
         <div class="col-4">
                 <a href="{% url 'create_client' %}" class="btn btn-primary mb-4">Добавить нового клиента</a>
