@@ -95,9 +95,13 @@ class SendingListView(LoginRequiredMixin, ListView):
     model = Sending
 
     def get_queryset(self):
-        """ Фильтр по текущему пользователю"""
+        """ Формирование кверисета """
         sen = super().get_queryset()
         user = self.request.user
+        # Проверка, что есть права менеджера тогда возвращаю все
+        if user.has_perm('main.can_view_all_sendings'):
+            return sen
+        # в противном случае возвращаем рассылки пользователя
         return sen.filter(owner=user)
 
 
