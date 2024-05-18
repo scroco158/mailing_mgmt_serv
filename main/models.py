@@ -72,6 +72,11 @@ class Sending(models.Model):
         verbose_name_plural = 'рассылки'
         ordering = ('start_time',)
 
+        permissions = [
+            ('can_view_all_sendings', 'can view all sendings'),
+            ('can_switch_status', 'can switch status'),
+            ]
+
 
 class MailingAttempt(models.Model):
     """ Попытка рассылки """
