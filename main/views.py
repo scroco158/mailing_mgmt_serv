@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from blog.models import BlogRecord
+from main.forms import SendingForm, ManagerSendingForm
 from main.models import Client, Message, Sending
 from main.services import send_mailing
 from django.core.management import call_command
@@ -120,8 +122,24 @@ class SendingCreateView(LoginRequiredMixin, CreateView):
 
 class SendingUpdateView(LoginRequiredMixin, UpdateView):
     model = Sending
-    fields = ['name', 'start_time', 'end_time', 'client', 'period', 'status', 'message', 'last_ok_time']
+
+    # это убираем
+    # fields = ['name', 'start_time', 'end_time', 'client', 'period', 'status', 'message', 'last_ok_time']
+
     success_url = reverse_lazy('all_sendings')
+
+    # Использую гет форм класс
+    def get_form_class(self):
+        # получение текущего юзера
+        user = self.request.user
+        # если есть разрешение - то форма для менеджеров
+        if user.has_perm('main.can_switch_status'):
+            return ManagerSendingForm
+        # если владелец рассылки - то форма для него
+        if user == self.object.owner:
+            return SendingForm
+        # и если не то не то, то нет доступа
+        return PermissionDenied
 
 
 class SendingDeleteView(LoginRequiredMixin, DeleteView):
