@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserCreationForm
@@ -8,6 +8,10 @@ from users.models import User
 
 import secrets
 from django.core.mail import send_mail
+
+
+class UserListView(ListView):
+    model = User
 
 
 class UserCreateView(CreateView):

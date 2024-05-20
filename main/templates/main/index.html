@@ -181,7 +181,7 @@
 
       {% if user.is_authenticated %}
           {% if perms.main.can_view_all_sendings %}
-            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_messages' %}">Пользователи</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:all_users' %}">Пользователи</a>
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_sendings' %}">Рассылки</a>
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выход {{ user.email }}</a>
           {% else %}
