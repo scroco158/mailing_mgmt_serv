@@ -2,10 +2,13 @@
     {% block content%}
 
         <div class="col-4">
-               <h2> Рассылки пользователя {{ user }} </h2>
+               <h2> Рассылки</h2>
+               <h4> Пользователь {{ user }} </h4>
         </div>
         <div class="col-4">
+            {% if not perms.main.can_view_all_sendings %}
                 <a href="{% url 'create_sending' %}" class="btn btn-primary mb-4">Добавить рассылку</a>
+            {% endif %}
         </div>
         <div class="col-4">
         </div>
@@ -23,7 +26,10 @@
               <div class="card-body">
                 <a href="{% url 'one_sending' object.pk %}" class="btn btn-secondary">View</a>
                 <a href="{% url 'update_sending' object.pk %}" class="btn btn-secondary">Edit</a>
-                <a href="{% url 'delete_sending' object.pk %}" class="btn btn-warning">Del</a>
+                {% if not perms.main.can_view_all_sendings %}
+                    <a href="{% url 'delete_sending' object.pk %}" class="btn btn-warning">Del</a>
+                {% endif %}
+
               </div>
           </div>
         {% endfor %}

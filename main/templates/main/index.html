@@ -180,10 +180,17 @@
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
 
       {% if user.is_authenticated %}
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_clients' %}">Клиенты</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_messages' %}">Сообщения</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_sendings' %}">Рассылки</a>
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выход {{ user.email }}</a>
+          {% if perms.main.can_view_all_sendings %}
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_messages' %}">Пользователи</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_sendings' %}">Рассылки</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выход {{ user.email }}</a>
+          {% else %}
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_clients' %}">Клиенты</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_messages' %}">Сообщения</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'all_sendings' %}">Рассылки</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:logout' %}">Выход {{ user.email }}</a>
+          {% endif %}
+
       {% else %}
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:register' %}">Регистрация</a>
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:login' %}">Вход</a>
