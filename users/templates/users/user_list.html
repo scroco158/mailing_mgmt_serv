@@ -9,16 +9,25 @@
 
 
         {% for object in object_list %}
-          <div class="card" style="width: 20rem;">
-              <div class="card-body">
-                <h5 class="card-title">Пользователь {{object.email}}</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Тема____{{object.is_active}}</li>
-              </ul>
-              <div class="card-body">
-                <a href="{% url 'delete_message' object.pk %}" class="btn btn-warning">переключить статус</a>
-              </div>
-          </div>
+
+              {% if not object.is_staff %}
+                  <div class="card" style="width: 20rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">Пользователь {{object.email}}</h5>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          {% if object.is_active %}
+                              <li class="list-group-item" style="background-color:YellowGreen;">Пользователь активен</li>
+                          {% else %}
+                              <li class="list-group-item">Пользователь не активен</li>
+                          {% endif %}
+
+                      </ul>
+                      <div class="card-body">
+                        <a href="{% url 'users:user_status_change' object.pk %}" class="btn btn-warning">переключить статус</a>
+                      </div>
+                  </div>
+              {% endif %}
+
         {% endfor %}
     {% endblock %}

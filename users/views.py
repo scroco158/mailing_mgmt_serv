@@ -49,3 +49,17 @@ def mail_verification(request, token):
     user.is_active = True                        # если найден - то активируем
     user.save()                                  # сохраняем
     return redirect(reverse('users:login'))      # редиректим на вход
+
+
+def user_status_change(request, pk):
+
+    one_user = get_object_or_404(User, pk=pk)
+    if one_user.is_active:
+        one_user.is_active = False
+    else:
+        one_user.is_active = True
+    one_user.save()
+    return redirect(reverse('users:all_users'))
+
+
+
