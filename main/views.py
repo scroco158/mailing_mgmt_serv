@@ -8,7 +8,7 @@ from django.views.generic import DetailView, ListView, CreateView, UpdateView, D
 from blog.models import BlogRecord
 from main.forms import SendingForm, ManagerSendingForm
 from main.models import Client, Message, Sending
-from main.services import send_mailing
+from main.services import send_mailing, get_blog_records_from_cache
 from django.core.management import call_command
 
 
@@ -190,8 +190,8 @@ def front_page(request):
     active_sending_quantity = len(Sending.objects.filter(status='st'))
     clients_quantity = len(Client.objects.all())
 
-    blog_records = BlogRecord.objects.all()[:3]
-
+    # Использую загрузку данных блога из кеша
+    blog_records = get_blog_records_from_cache()[:3]
 
     context = {
         'sending_quantity': sending_quantity,

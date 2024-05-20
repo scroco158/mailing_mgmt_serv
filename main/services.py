@@ -1,8 +1,13 @@
 import smtplib
 import pytz
 from datetime import datetime, timedelta
+
+from django.core.cache import cache
 from django.core.mail import send_mail
+
+from blog.models import BlogRecord
 from config import settings
+from config.settings import CACHE_ENABLED
 from main.models import Sending, MailingAttempt
 from django.core.management import call_command
 
@@ -72,3 +77,17 @@ def send_mailing():
                     status=False,
                     server_response=e.__doc__
                 )
+
+
+def get_blog_records_from_cache():
+    """ Считывает записи блога из кеша если кеш пуст берет из базы"""
+    if not CACHE_ENABLED:
+        return BlogRecord.objects.all()
+    key = 'bl_records'
+    records = cache.get(key)
+    if not records:
+        records = BlogRecord.objects.all()
+        cache.set(key, records)
+    return records
+
+

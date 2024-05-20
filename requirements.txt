@@ -1,5 +1,6 @@
 asgiref==3.8.1
 asttokens==2.4.1
+async-timeout==4.0.3
 decorator==5.1.1
 Django==4.2.2
 django-crontab==0.7.1
@@ -10,6 +11,7 @@ jedi==0.19.1
 matplotlib-inline==0.1.6
 parso==0.8.3
 pexpect==4.9.0
+pillow==10.3.0
 prompt-toolkit==3.0.43
 psycopg2-binary==2.9.9
 ptyprocess==0.7.0
@@ -17,6 +19,7 @@ pure-eval==0.2.2
 Pygments==2.17.2
 python-dotenv==1.0.1
 pytz==2024.1
+redis==5.0.4
 six==1.16.0
 sqlparse==0.4.4
 stack-data==0.6.3
