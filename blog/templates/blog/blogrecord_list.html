@@ -1,4 +1,4 @@
-{% extends 'catalog/base.html' %}
+{% extends 'main/index.html' %}
 {% load my_tags  %}
 
      {% block content %}
@@ -21,11 +21,11 @@
                     <a href="{% url 'blog:update_record' object.pk %}" class="card-link">Edit</a>
                     <a href="{% url 'blog:delete_record' object.pk %}" class="card-link">Del</a>
                 </div>
-                {% if object.is_published %}
-                    <a class="btn btn-warning" href="{% url 'blog:status_change' object.pk %}">Пометить не опубликованным</a>
-                {% else %}
-                    <a class="btn btn-success" href="{% url 'blog:status_change' object.pk %}">Пометить опубликованным</a>
-                {% endif %}
+{#                {% if object.is_published %}#}
+{#                    <a class="btn btn-warning" href="{% url 'blog:status_change' object.pk %}">Пометить не опубликованным</a>#}
+{#                {% else %}#}
+{#                    <a class="btn btn-success" href="{% url 'blog:status_change' object.pk %}">Пометить опубликованным</a>#}
+{#                {% endif %}#}
               </div>
           </div>
           {% endfor %}
