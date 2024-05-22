@@ -29,7 +29,6 @@ class Client(models.Model):
 
     owner = models.ForeignKey(User, verbose_name='Владелец', on_delete=models.CASCADE, **NULLABLE)
 
-
     def __str__(self):
         return self.name
 
@@ -56,7 +55,7 @@ class Sending(models.Model):
     name = models.CharField(max_length=50, verbose_name='название рассылки')
     start_time = models.DateTimeField(verbose_name='время начала')
     end_time = models.DateTimeField(verbose_name='время завершения', **NULLABLE)
-    period = models.CharField(max_length=2, choices=PERIOD_CHOICES, verbose_name='периодичность рассылки' )
+    period = models.CharField(max_length=2, choices=PERIOD_CHOICES, verbose_name='периодичность рассылки')
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='cr')
     client = models.ManyToManyField(Client, verbose_name='клиент')
     message = models.OneToOneField(Message, on_delete=models.CASCADE, verbose_name='содержание рассылки')
@@ -72,10 +71,9 @@ class Sending(models.Model):
         verbose_name_plural = 'рассылки'
         ordering = ('start_time',)
 
-        permissions = [
-            ('can_view_all_sendings', 'can view all sendings'),
-            ('can_switch_status', 'can switch status'),
-            ]
+        permissions = [('can_view_all_sendings', 'can view all sendings'),
+                       ('can_switch_status', 'can switch status'),
+                       ]
 
 
 class MailingAttempt(models.Model):

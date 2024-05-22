@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
-from blog.models import BlogRecord
 from main.forms import SendingForm, ManagerSendingForm
 from main.models import Client, Message, Sending
 from main.services import send_mailing, get_blog_records_from_cache
@@ -58,7 +57,7 @@ class MessageListView(LoginRequiredMixin, ListView):
     model = Message
 
     def get_queryset(self):
-        mes_queryset=super().get_queryset()
+        mes_queryset = super().get_queryset()
         user = self.request.user
         return mes_queryset.filter(owner=user)
 

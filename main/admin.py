@@ -8,13 +8,13 @@ class MessageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Client)
-class MessageAdmin(admin.ModelAdmin):
+class ClientAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'surname', 'email')
 
 
 @admin.register(Sending)
-class MessageAdmin(admin.ModelAdmin):
-    list_display = ('pk','name', 'start_time', 'end_time', 'period', 'status', 'message', 'last_ok_time')
+class SendingAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'name', 'start_time', 'end_time', 'period', 'status', 'message', 'last_ok_time')
 
 
 @admin.register(MailingAttempt)

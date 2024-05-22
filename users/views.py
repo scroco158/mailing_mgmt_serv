@@ -60,6 +60,3 @@ def user_status_change(request, pk):
         one_user.is_active = True
     one_user.save()
     return redirect(reverse('users:all_users'))
-
-
-

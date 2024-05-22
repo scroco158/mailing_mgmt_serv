@@ -9,7 +9,6 @@ from blog.models import BlogRecord
 from config import settings
 from config.settings import CACHE_ENABLED
 from main.models import Sending, MailingAttempt
-from django.core.management import call_command
 
 MY_TIME_FORMAT = '%m/%d/%Y %H:%M:%S'
 
@@ -89,5 +88,3 @@ def get_blog_records_from_cache():
         records = BlogRecord.objects.all()
         cache.set(key, records)
     return records
-
-
