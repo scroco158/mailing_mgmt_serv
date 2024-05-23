@@ -16,6 +16,12 @@ class MailingAttemptListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        # Не могу понять как мне тут получить pk текущей рассылки,
+        # хочу вот так фильтровать
+        #queryset = queryset.filter(sending=2)
+        #в фильтер хочу вместо 2 подставлят pk текущей рассылки
+
         return queryset
 
 
