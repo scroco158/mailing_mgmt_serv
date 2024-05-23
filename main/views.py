@@ -6,9 +6,17 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from main.forms import SendingForm, ManagerSendingForm
-from main.models import Client, Message, Sending
+from main.models import Client, Message, Sending, MailingAttempt
 from main.services import send_mailing, get_blog_records_from_cache
 from django.core.management import call_command
+
+
+class MailingAttemptListView(LoginRequiredMixin, ListView):
+    model = MailingAttempt
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset
 
 
 # контроллеры по работе с клиентом

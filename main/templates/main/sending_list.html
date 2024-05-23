@@ -28,6 +28,7 @@
                 <a href="{% url 'update_sending' object.pk %}" class="btn btn-secondary">Edit</a>
                 {% if not perms.main.can_view_all_sendings %}
                     <a href="{% url 'delete_sending' object.pk %}" class="btn btn-warning">Del</a>
+                    <a href="{% url 'all_mailingattempt' %}" class="btn btn-primary mt-2">View Log</a>
                 {% endif %}
 
               </div>

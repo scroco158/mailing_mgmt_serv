@@ -4,11 +4,12 @@ from django.views.decorators.cache import cache_page
 from main.views import (ClientDetailView, ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView,
                         MessageDetailView, MessageListView, MessageCreateView, MessageUpdateView, MessageDeleteView,
                         SendingListView, SendingDetailView, SendingCreateView, SendingUpdateView, SendingDeleteView,
-                        run_by_button, turn_on_schedule, turn_off_schedule, front_page)
+                        run_by_button, turn_on_schedule, turn_off_schedule, front_page, MailingAttemptListView)
 
 urlpatterns = [
 
     path('', front_page, name='front_page'),
+    path('all_mailingattempt', MailingAttemptListView.as_view(), name='all_mailingattempt'),
 
     path('one_client/<int:pk>', ClientDetailView.as_view(), name='one_client'),
     path('all_clients', ClientListView.as_view(), name='all_clients'),

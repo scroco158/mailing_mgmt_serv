@@ -1,0 +1,33 @@
+{% extends 'main/index.html' %}
+    {% block content%}
+
+        <div class="col-4">
+               <h3> Информация по рассылкам </h3>
+               <h5> Пользователя {{ user }} </h5>
+        </div>
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+        </div>
+
+
+        {% for object in object_list %}
+          <div class="card" style="width: 20rem;">
+              <div class="card-body">
+                <h5 class="card-title">Рассылка</h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{object.sending}}</li>
+                <li class="list-group-item">Время {{object.latest_att_time}}</li>
+                  {% if object.status %}
+                     <li class="list-group-item">Выполнена</li>
+                  {% else %}
+                     <li class="list-group-item">Не выполнена</li>
+                  {% endif %}
+              </ul>
+              <div class="card-body">
+                  {{object.server_response}}
+              </div>
+          </div>
+        {% endfor %}
+    {% endblock %}
